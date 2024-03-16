@@ -1,0 +1,22 @@
+name: Build Simple File Organiser
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:    
+  build-executable:
+    name: Build executable
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+    - name: Build executable
+      uses: Martin005/pyinstaller-action@main
+      with:
+        spec: simple-file-organiser/src/main.py
+        requirements: simple-file-organiser/requirements.txt
+        options: --onefile, --noconsole, --name "Simple File Organiser"
+        python_ver: 3.12
+        upload_exe_with_name: 'simple-file-organiser-${{ matrix.os }}-${{ github.sha }}'

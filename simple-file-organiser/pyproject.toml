@@ -1,0 +1,32 @@
+[project]
+name = "simple-file-organiser"
+version = "1.0.0"
+dependencies = [
+    "PySimpleGUI",
+    "pyinstaller"
+]
+requires-python = "~= 3.12"
+authors = [
+    {name = "Luka \"Mahtaran\" Leer", email = "luka.leer@gmail.com"}
+]
+description = "Organises your files into folders, based on the file name"
+readme = "readme.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: The Unlicense (Unlicense)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12"
+]
+
+[project.urls]
+Homepage = "https://github.com/mahtaran/scripts/tree/main/simple-file-organiser"
+Repository = "https://github.com/mahtaran/scripts.git"
+Issues = "https://github.com/mahtaran/scripts/issues"
+
+[project.scripts]
+cli = "cli:run"
+
+[project.gui-scripts]
+gui = "gui:run"

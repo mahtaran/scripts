@@ -1,0 +1,25 @@
+# Based on https://github.com/gitattributes/gitattributes
+
+# Auto detect text files and perform LF normalization
+*                             text=auto
+
+#
+# The above will handle all files NOT found below
+#
+
+# Git
+.gitattributes               text
+.gitignore                   text
+
+# Documents
+*.md                          text diff=markdown
+*.txt                         text
+
+# Data
+*.yaml                        text
+*.toml                        text
+
+# Code
+*.py                          text
+*.ps1                         text eol=crlf
+*.sh                          text eol=lf
