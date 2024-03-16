@@ -12,11 +12,27 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
-    - name: Build executable
-      uses: Martin005/pyinstaller-action@main
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Install Python
+      uses: actions/setup-python@v5
       with:
-        spec: simple-file-organiser/src/main.py
-        requirements: simple-file-organiser/requirements.txt
-        options: --onefile, --noconsole, --name "Simple File Organiser"
-        python_ver: 3.12
-        upload_exe_with_name: 'simple-file-organiser-${{ matrix.os }}-${{ github.sha }}'
+        python-version: 3.12
+        cache: "pip"
+        cache-dependency-path: simple-file-organiser/requirements.txt
+    - name: Install dependencies
+      run: pip install -r simple-file-organiser/requirements.txt
+    - name: Build executable
+      shell: bash
+      run: |
+        pyinstaller \
+          --onefile \
+          --noconsole \
+          --name "Simple File Organiser"
+          simple-file-organiser/src/main.py
+    - name: Upload executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: simple-file-organiser-${{ matrix.os }}-${{ github.sha }}
+        path: dist/Simple\ File\ Organiser
+        if-no-files-found: error
