@@ -28,7 +28,7 @@ jobs:
         pyinstaller \
           --onefile \
           --noconsole \
-          --name "Simple File Organiser"
+          --name "Simple File Organiser" \
           simple-file-organiser/src/main.py
     - name: Upload executable
       uses: actions/upload-artifact@v4
